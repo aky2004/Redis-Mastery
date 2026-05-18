@@ -1,3 +1,4 @@
+// To run this file => npm run benchmark
 import autocannon from 'autocannon';
 
 const formatNumber = (num) => {
@@ -55,7 +56,6 @@ const run = async () => {
         console.log('\n🚀 BENCHMARK RESULTS');
         console.log('===================');
 
-        // Basic Stats
         console.log('\n=== Basic Statistics ===');
         console.log('Metric'.padEnd(15), '|', 'Count'.padStart(10));
         console.log('-'.repeat(27));
@@ -64,7 +64,6 @@ const run = async () => {
         console.log('Timeouts'.padEnd(15), '|', result.timeouts.toString().padStart(10));
         console.log('Duration (s)'.padEnd(15), '|', result.duration.toString().padStart(10));
 
-        // Latency Stats
         createTable(
             {
                 Average: result.latency.average,
@@ -75,10 +74,8 @@ const run = async () => {
             'Latency (ms)'
         );
 
-        // Latency Percentiles
         createPercentileTable(result.latency, 'Latency', 'ms');
 
-        // Request Stats
         createTable(
             {
                 Average: result.requests.average,
@@ -90,7 +87,6 @@ const run = async () => {
             'Requests per Second'
         );
 
-        // Throughput Stats (converted to KB/s)
         createTable(
             {
                 Average: result.throughput.average / 1024,

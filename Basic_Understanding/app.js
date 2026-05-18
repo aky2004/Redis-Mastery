@@ -91,7 +91,6 @@ app.get("/user-data", async (req, res) => {
     }
     const users = await User.find(query);
     
-    // Store in cache for 1 hour (3600 seconds)
     await client.setEx(cacheKey, 3600, JSON.stringify(users));
     console.log(`📦 Data cached for key: ${cacheKey}`);
     
